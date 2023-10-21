@@ -64,7 +64,7 @@ height: 2px;
     font-family: var(--mono);
     color: var(--white);
     text-decoration: none;
-
+    
 }
 
 .button:hover{
@@ -176,7 +176,7 @@ nav li a:last-child:hover{
 #footer ul{
     list-style-type: none;
     padding-top: 50px;
-
+   
     margin: 0;
     display: flex;
     flex-flow: row wrap;
@@ -270,3 +270,21 @@ nav li a:last-child:hover{
         justify-content: flex-start;
       }
 }
+
+/*-----------------------Slider------------------------*/
+.slider {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+  }
+  
+  .slide {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
