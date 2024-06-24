@@ -108,7 +108,12 @@
       <li><a href="https://www.github.com/samjam003"><span class="fa-brands fa-github" aria-hidden="true"></span><span class="sr-only">Github</span></a></li>
       <li><a href="mailto:“jamadarsaim@gmail.com"><span class="fa-solid fa-envelope" aria-hidden="true"></span><span class="sr-only">Email</span></a></li>
     </ul>
-    <p><small>&copy; 2023 Saim Jamadar. All right reserved.</small></p>
+    <p><small>&copy; <span id="currentYear"></span> Saim Jamadar. All rights reserved.</small></p>
+
+    <script>
+        // JavaScript to set the current year
+        document.getElementById("currentYear").textContent = new Date().getFullYear();
+    </script>
 </footer>
 </body>
 </html>
