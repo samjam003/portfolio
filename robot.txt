@@ -3,3 +3,4 @@ Disallow: /private/
 Allow: /
 
 Sitemap: https://thesamjam.xyz/sitemap.xml
+
