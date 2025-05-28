@@ -18,42 +18,764 @@
   <meta name="twitter:description" content="Saim Jamadar's personal website showcasing projects, blog posts, and contact information.">
   <meta name="twitter:image" content="https://thesamjam.xyz/images/twitter-image.jpg">
   <link rel="canonical" href="https://thesamjam.xyz/">
-  <link rel="stylesheet" href="style/home.css">
+  
+  <!-- External Libraries -->
   <script src="https://kit.fontawesome.com/e025b89a88.js" crossorigin="anonymous"></script>
-  <title>Saim Jamadar</title>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2290587730801413"
-    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  
+  <title>Saim Jamadar - Royal Portfolio</title>
 </head>
 
 <style>
-  .hidden-projects {
-    display: none;
-  }
+/*FONTS*/
+@import url('https://fonts.googleapis.com/css2?family=Oxygen&family=Playfair+Display:wght@400;700&display=swap');
 
-  .hidden-projects.show {
+/* Enhanced CSS Variables with Royal Theme */
+:root {
+    --black: #171321;
+    --dkblue: #0d314b;
+    --plum: #4b0d49;
+    --hotmag: #ff17e4;
+    --magenta: #e310cb;
+    --aqua: #86fbfb;
+    --white: #f7f8fa;
+    --gold: #ffd700;
+    --royal-purple: #663399;
+    --font-size: 1.3rem;
+    --mono: "Oxygen mono", monospace;
+    --sans: Oxygen, sans-serif;
+    --royal: 'Playfair Display', serif;
+}
+
+/* Enhanced Base Styles */
+html {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    font-family: var(--sans);
+    background: linear-gradient(135deg, var(--black) 0%, var(--dkblue) 50%, var(--plum) 100%);
+    background-attachment: fixed;
+    color: var(--white);
+    font-size: var(--font-size);
+    overflow-x: hidden;
+}
+
+/* Floating Particles Background */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--aqua);
+    border-radius: 50%;
+    opacity: 0.7;
+    animation: float 15s infinite linear;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.7;
+    }
+    90% {
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Royal Crown Icon */
+.crown {
+    display: inline-block;
+    color: var(--gold);
+    margin-right: 10px;
+    animation: shimmer 2s infinite alternate;
+}
+
+@keyframes shimmer {
+    0% { opacity: 0.7; transform: scale(1); }
+    100% { opacity: 1; transform: scale(1.1); }
+}
+
+/* Enhanced Typography */
+h1, h2, h3 {
+    margin: 0;
+    font-family: var(--royal);
+}
+
+h1 {
+    font-size: 3.5rem;
+    background: linear-gradient(45deg, var(--gold), var(--aqua), var(--hotmag));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+h2 {
+    font-size: 2.8rem;
+    position: relative;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--hotmag), var(--aqua));
+    border-radius: 2px;
+}
+
+/* Enhanced Links */
+a {
+    color: var(--magenta);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+a:hover {
+    color: var(--hotmag);
+    text-decoration: none;
+    text-shadow: 0 0 10px var(--hotmag);
+}
+
+/* Enhanced Images */
+img {
+    width: 100%;
+    transition: all 0.5s ease;
+    filter: brightness(1.1) saturate(1.2);
+}
+
+img:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2) saturate(1.4);
+    box-shadow: 0 20px 40px rgba(255, 23, 228, 0.3);
+}
+
+/* Enhanced Gradient */
+.gradient {
+    background: linear-gradient(90deg, 
+        rgba(255, 23, 228, 1) 0%, 
+        rgba(255, 215, 0, 0.8) 25%,
+        rgba(134, 251, 251, 1) 50%,
+        rgba(255, 215, 0, 0.8) 75%,
+        rgba(255, 23, 228, 1) 100%);
+    height: 4px;
+    position: relative;
+    overflow: hidden;
+}
+
+.gradient::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: slide 2s infinite;
+}
+
+@keyframes slide {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Enhanced Sections */
+.section-dkblue {
+    background: linear-gradient(135deg, var(--dkblue) 0%, var(--royal-purple) 100%);
+    position: relative;
+}
+
+.section-plum {
+    background: linear-gradient(135deg, var(--plum) 0%, var(--royal-purple) 100%);
+    position: relative;
+}
+
+.section-dkblue::before,
+.section-plum::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23ffffff" opacity="0.05"/><circle cx="75" cy="75" r="1" fill="%23ffffff" opacity="0.05"/><circle cx="25" cy="75" r="1" fill="%23ffffff" opacity="0.03"/><circle cx="75" cy="25" r="1" fill="%23ffffff" opacity="0.03"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    pointer-events: none;
+}
+
+/* Enhanced Button */
+.button {
+    background: linear-gradient(45deg, var(--hotmag), var(--magenta));
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    font-family: var(--mono);
+    color: var(--white);
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(255, 23, 228, 0.3);
+    border: 2px solid transparent;
+}
+
+.button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.button:hover {
+    color: var(--black);
+    background: linear-gradient(45deg, var(--aqua), var(--gold));
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(255, 23, 228, 0.5);
+    border-color: var(--gold);
+}
+
+.button:hover::before {
+    left: 100%;
+}
+
+/* Enhanced Intro Section */
+#intro {
+    padding: 8rem 2rem 10rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+}
+
+#intro::before {
+    content: '✨';
+    position: absolute;
+    top: 20px;
+    left: 50px;
+    font-size: 2rem;
+    animation: twinkle 3s infinite;
+}
+
+#intro::after {
+    content: '👑';
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    font-size: 2rem;
+    animation: twinkle 3s infinite 1s;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+#intro p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#intro .name {
+    font-family: var(--mono);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.name span {
+    font-family: var(--royal);
+    font-size: 4rem;
+    background: linear-gradient(45deg, var(--aqua), var(--gold), var(--hotmag));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     display: block;
-  }
+    margin: 1rem 0;
+    animation: glow 2s ease-in-out infinite alternate;
+}
 
-  .see-more {
-    background-color: transparent;
+@keyframes glow {
+    from { text-shadow: 0 0 20px rgba(134, 251, 251, 0.5); }
+    to { text-shadow: 0 0 30px rgba(255, 215, 0, 0.8), 0 0 40px rgba(255, 23, 228, 0.5); }
+}
+
+#intro h5 {
+    font-family: var(--royal);
+    font-size: 1.8rem;
+    color: var(--gold);
+    margin: 2rem 0;
+    font-style: italic;
+}
+
+/* Enhanced Navigation */
+nav {
+    font-family: var(--mono);
+    font-size: 90%;
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+    background: rgba(23, 19, 33, 0.9);
+    border-bottom: 1px solid rgba(134, 251, 251, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav h1 a {
+    font-family: var(--royal);
+    font-size: 1.8rem;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+nav a {
+    color: var(--white);
+    text-decoration: none;
+    display: block;
+    padding: 0.5rem 1rem;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+nav a:hover {
+    background: rgba(255, 23, 228, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 23, 228, 0.3);
+}
+
+nav [class*="fa-"] {
+    font-size: 150%;
+    color: var(--aqua);
+    transition: all 0.3s ease;
+}
+
+nav a:hover [class*="fa-"] {
+    color: var(--gold);
+    transform: scale(1.2);
+}
+
+nav li:first-child {
+    flex-basis: 100%;
+    text-align: center;
+}
+
+/* Enhanced Projects Section */
+#projects {
+    padding: 6rem 2rem;
+    position: relative;
+}
+
+#projects h2 {
+    font-size: 3rem;
+    margin-bottom: 4rem;
+    text-align: center;
+    font-family: var(--royal);
+}
+
+#projects h3 {
+    color: var(--aqua);
+    font-family: var(--royal);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+#projects h4 {
+    font-size: 1.1rem;
+    font-family: var(--mono);
+    margin: 0 0 0.5rem 0;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.project-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+article {
+    margin-bottom: 6rem;
+    padding: 2rem;
+    border-radius: 20px;
+    background: rgba(13, 49, 75, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(134, 251, 251, 0.2);
+    transition: all 0.5s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+article::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--hotmag), var(--aqua), var(--gold), var(--magenta));
+    border-radius: 20px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+article:hover::before {
+    opacity: 0.3;
+}
+
+article:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(255, 23, 228, 0.3);
+}
+
+.blackbox {
+    background: linear-gradient(135deg, var(--black) 0%, rgba(75, 13, 73, 0.8) 100%);
+    padding: 1.5rem;
+    border-radius: 15px;
+    color: var(--white);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    border: 1px solid rgba(134, 251, 251, 0.3);
+    position: relative;
+}
+
+.blackbox::before {
+    content: '"';
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    font-size: 3rem;
+    color: var(--gold);
+    font-family: var(--royal);
+}
+
+#projects ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 1rem 0;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    gap: 1rem;
+    font-size: 0.9rem;
+}
+
+#projects li {
+    background: linear-gradient(45deg, var(--magenta), var(--hotmag));
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-family: var(--mono);
+    font-weight: bold;
+    box-shadow: 0 5px 10px rgba(255, 23, 228, 0.3);
+    transition: all 0.3s ease;
+}
+
+#projects li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(255, 23, 228, 0.5);
+}
+
+#projects img {
+    margin: 2rem 0;
+    border: 2px solid var(--aqua);
+    border-radius: 15px;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Enhanced Contact Section */
+#contact {
+    width: 500px;
+    max-width: 90%;
+    text-align: center;
     color: white;
-    padding: 10px 20px;
-    margin: 8px 0;
-    border: white 2px solid;
-    border-top: 0px;
-    border-left: 1px;
-    border-radius: 5px 20px 5px 0px;
-    cursor: pointer;
+    padding: 4rem 2rem;
+    margin: 0 auto;
+    position: relative;
+}
 
-  }
+#contact::before {
+    content: '💎';
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3rem;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+    40% { transform: translateX(-50%) translateY(-10px); }
+    60% { transform: translateX(-50%) translateY(-5px); }
+}
+
+#contact h3 {
+    font-family: var(--royal);
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--gold);
+}
+
+#contact p:last-child {
+    margin-top: 3rem;
+}
+
+/* Enhanced Footer */
+#footer {
+    text-align: center;
+    padding: 4rem 2rem;
+    margin: 0 auto;
+    background: linear-gradient(135deg, var(--black) 0%, var(--dkblue) 100%);
+    border-top: 1px solid rgba(134, 251, 251, 0.3);
+}
+
+#footer h2 {
+    font-family: var(--royal);
+    color: var(--gold);
+    margin-bottom: 2rem;
+}
+
+#footer ul {
+    list-style-type: none;
+    padding: 2rem 0;
+    margin: 0;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+}
+
+#footer a {
+    color: var(--white);
+    text-decoration: none;
+    display: block;
+    padding: 1rem;
+    border-radius: 50%;
+    background: rgba(255, 23, 228, 0.2);
+    transition: all 0.3s ease;
+}
+
+#footer a:hover {
+    background: rgba(255, 215, 0, 0.3);
+    transform: translateY(-5px) rotate(360deg);
+    box-shadow: 0 10px 20px rgba(255, 215, 0, 0.5);
+}
+
+#footer [class*="fa-"] {
+    font-size: 150%;
+    color: var(--aqua);
+    transition: all 0.3s ease;
+}
+
+#footer a:hover [class*="fa-"] {
+    color: var(--gold);
+}
+
+/* Enhanced See More Button */
+.see-more {
+    background: linear-gradient(45deg, transparent, rgba(255, 23, 228, 0.3));
+    color: var(--white);
+    padding: 1rem 2rem;
+    margin: 3rem auto;
+    border: 2px solid var(--hotmag);
+    border-radius: 25px;
+    cursor: pointer;
+    font-family: var(--mono);
+    font-size: 1.1rem;
+    display: block;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.see-more::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, var(--hotmag), transparent);
+    transition: all 0.3s ease;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+}
+
+.see-more:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.see-more:hover {
+    color: var(--black);
+    border-color: var(--gold);
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(255, 23, 228, 0.4);
+}
+
+/* Hidden Projects Animation */
+.hidden-projects {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.8s ease;
+}
+
+.hidden-projects.show {
+    max-height: 5000px;
+}
+
+/* Responsive Design */
+@media (min-width: 850px) {
+    nav {
+        max-width: 1200px;
+        margin: auto;
+    }
+    
+    nav li:first-child {
+        flex-basis: auto;
+        text-align: left;
+        margin-right: auto;
+    }
+}
+
+@media (min-width: 550px) {
+    article {
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+        gap: 2rem;
+        align-items: center;
+    }
+    
+    #projects {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    #projects img {
+        grid-column: 1/6;
+        grid-row: 1/2;
+        margin: 0;
+    }
+    
+    .text {
+        grid-column: 5/11;
+        grid-row: 1/2;
+        order: 2;
+        text-align: right;
+    }
+    
+    #projects ul {
+        justify-content: flex-end;
+    }
+    
+    #projects .reverse .text {
+        grid-column: 1/7;
+        order: 2;
+        text-align: left;
+    }
+    
+    #projects .reverse img {
+        grid-column: 6/11;
+        grid-row: 1/2;
+    }
+    
+    #projects .reverse ul {
+        justify-content: flex-start;
+    }
+}
+
+/* Loading Animation */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 23, 228, 0.3);
+    z-index: 9999;
+}
+
+.scroll-progress {
+    height: 100%;
+    background: linear-gradient(90deg, var(--hotmag), var(--aqua), var(--gold));
+    width: 0%;
+    transition: width 0.3s ease;
+}
 </style>
 
 <body>
-  <!-- instructions in JavaScript block -->
-  <nav>
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-indicator">
+    <div class="scroll-progress"></div>
+  </div>
+
+  <!-- Floating Particles -->
+  <div class="particles"></div>
+
+  <!-- Navigation -->
+  <nav class="fade-in">
     <ul>
       <li>
-        <h1><a href="index.html"><span class="fa-solid fa-code"></span><span> Saim Jamadar</span></a></h1>
+        <h1><a href="index.html"><span class="crown">👑</span><span class="fa-solid fa-code"></span><span> Saim Jamadar</span></a></h1>
       </li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="about.html">About</a></li>
@@ -66,30 +788,34 @@
       </li>
     </ul>
   </nav>
+  
   <div class="gradient"></div>
 
-  <section id="intro" style="padding:10px;">
+  <!-- Intro Section -->
+  <section id="intro" class="fade-in">
     <p class="name">Hi, my name is <span>Saim Jamadar</span></p>
-    <h5>Computer Engineering Student | Developer</h5>
-    <p>I am computer engineering student with a passion for coding and technology. I have experience with various
+    <h5>👑 Computer Engineering Student | Royal Developer 👑</h5>
+    <p>I am a computer engineering student with a passion for coding and technology. I have experience with various
       programming languages, including Python, Java, C++, HTML, CSS, JavaScript, React, Node.js, PHP, and Machine
       Learning. I love to explore new technologies and learn about cutting-edge innovations in the tech world.</p>
-    <!--<p>Currently, I'm Studying Computer Engineering at <a href="https://dbatu.ac.in/">D.B.A.T.U.</a></p>-->
   </section>
+  
   <div class="gradient"></div>
+  
+  <!-- Projects Section -->
   <div class="section-dkblue">
-    <section id="projects">
-      <h2>Projects I'm proud of</h2>
+    <section id="projects" class="fade-in">
+      <h2><span class="crown">👑</span>Projects I'm Proud Of</h2>
       <div class="project-container">
-        <article>
+        <article class="fade-in">
           <div class="text">
             <h4>Latest Project</h4>
             <h3>ScrollProjects</h3>
             <p class="blackbox">ScrollProject, AI-Powered Project Ideas and Diagrams <br>
               A platform that leverages AI to generate project ideas and descriptions tailored to
-              students' chosen
-              domains and technologies. Integrated PlantUML for automatic diagram generation, including AI-assisted code
+              students' chosen domains and technologies. Integrated PlantUML for automatic diagram generation, including AI-assisted code
               creation<br><a href="https://scrollprojects.tech/">Visit Now</a>.
+            </p>
             <h4>Technologies used include:</h4>
             <ul>
               <li>Next.js</li>
@@ -97,25 +823,20 @@
               <li>plantUML</li>
             </ul>
           </div>
-          <img src="scrollProjects.png" alt="Screenshot of the Weatherly." />
+          <img src="https://via.placeholder.com/600x400/0d314b/86fbfb?text=ScrollProjects" alt="Screenshot of ScrollProjects" />
         </article>
 
-        <article class="reverse">
+        <article class="reverse fade-in">
           <div class="text">
-            <h4>College Project(ongoing)</h4>
+            <h4>College Project (Ongoing)</h4>
             <h3>Mentor Sync</h3>
             <p class="blackbox">
               The Mentor Mentee Automation system streamlines the management of mentor-mentee interactions and records
-              in
-              educational institutions. It replaces manual paperwork with a digital platform, allowing mentors to easily
-              log meeting
-              details, track student issues and solutions, and maintain comprehensive records. The system also enables
-              mentees to
-              submit personal, academic, and extracurricular information through a form, ensuring the process is
-              efficient and
-              well-organized.
+              in educational institutions. It replaces manual paperwork with a digital platform, allowing mentors to easily
+              log meeting details, track student issues and solutions, and maintain comprehensive records. The system also enables
+              mentees to submit personal, academic, and extracurricular information through a form, ensuring the process is
+              efficient and well-organized.
             </p>
-
             <h4>Technologies used include:</h4>
             <ul>
               <li>HTML</li>
@@ -125,22 +846,19 @@
               <li>PWA</li>
             </ul>
           </div>
-          <img src="mentorSync.png" alt="Screenshot of the Mentor Mentee Automation system." />
+          <img src="https://via.placeholder.com/600x400/4b0d49/ffd700?text=Mentor+Sync" alt="Screenshot of Mentor Sync" />
         </article>
-
       </div>
+
       <div class="hidden-projects">
-        <article>
+        <article class="fade-in">
           <div class="text">
             <h4>Smart Parking System</h4>
             <h3>IntelliPark</h3>
             <p class="blackbox">
               IntelliPark simplifies parking management by allowing users to register, receive a QR code, and manage
-              vehicle
-              parking seamlessly. Users can generate tickets and easily unpark their vehicles, with the system tracking
-              parking
-              and unparking times.
-              <!-- <a href="#">Visit Now</a> -->
+              vehicle parking seamlessly. Users can generate tickets and easily unpark their vehicles, with the system tracking
+              parking and unparking times.
             </p>
             <h4>Technologies used include:</h4>
             <ul>
@@ -149,116 +867,563 @@
               <li>QR Code Integration</li>
             </ul>
           </div>
-          <img src="parking.png" alt="Screenshot of the IntelliPark system." />
+          <img src="https://via.placeholder.com/600x400/663399/86fbfb?text=IntelliPark" alt="Screenshot of IntelliPark" />
         </article>
-
-        <article class="reverse">
+<article class="reverse fade-in">
           <div class="text">
             <h4>Ongoing Project</h4>
             <h3>Hospital Management System</h3>
             <p class="blackbox">
               The Hospital Management Application is a comprehensive software solution designed to streamline and
-              optimize
-              the administrative and operational processes within a healthcare facility. This application aims to
-              improve
-              efficiency, enhance patient care, and facilitate effective communication among healthcare professionals.
+              optimize the administrative and operational processes within a healthcare facility. This application aims to
+              improve efficiency, enhance patient care, and facilitate effective communication among healthcare professionals.
+              The system manages patient records, appointment scheduling, inventory management, and billing processes.
             </p>
             <h4>Technologies used include:</h4>
             <ul>
               <li>HTML</li>
               <li>Bootstrap</li>
               <li>PHP</li>
+              <li>MySQL</li>
             </ul>
           </div>
-          <img src="hms.jpg" alt="Screenshot of the Wall of Wonder Collections." />
+          <img src="https://via.placeholder.com/600x400/663399/ffd700?text=Hospital+Management" alt="Screenshot of Hospital Management System" />
         </article>
 
-        <article>
+        <article class="fade-in">
           <div class="text">
-            <h4>Latest Project</h4>
+            <h4>Weather Application</h4>
             <h3>Weatherly</h3>
             <p class="blackbox">A Modern and Reliable Weather App <br>
               Weatherly is a sleek and user-friendly weather application that keeps you informed about the latest
-              weather
-              conditions with ease. Designed with simplicity and functionality in mind, Weatherly provides accurate and
+              weather conditions with ease. Designed with simplicity and functionality in mind, Weatherly provides accurate and
               real-time weather updates, making it an essential tool for anyone on the go.<br><a
-                href="https://weatherly-smj.netlify.app/">Visit Now</a>.
+                href="https://weatherly-smj.netlify.app/" target="_blank">Visit Now</a>.
+            </p>
             <h4>Technologies used include:</h4>
             <ul>
               <li>React</li>
               <li>PWA</li>
-              <li>OpenWeather</li>
+              <li>OpenWeather API</li>
+              <li>CSS3</li>
             </ul>
           </div>
-          <img src="weather2.png" alt="Screenshot of the Weatherly." />
+          <img src="https://via.placeholder.com/600x400/0d314b/86fbfb?text=Weatherly+App" alt="Screenshot of Weatherly Weather App" />
         </article>
 
-        <article class="reverse">
+        <article class="reverse fade-in">
           <div class="text">
             <h4>ML Project</h4>
             <h3>Diabetes Prediction</h3>
             <p class="blackbox">
               It serves as a valuable tool for early detection and prevention of diabetes, as users can obtain an
               estimation of their risk factors and take appropriate measures to maintain a healthy lifestyle or consult
-              a
-              healthcare professional for further guidance.
-              <a href="http://samjam.pythonanywhere.com/">Visit Now</a>
+              a healthcare professional for further guidance. The system uses machine learning algorithms to analyze various health parameters.
+              <a href="http://samjam.pythonanywhere.com/" target="_blank">Visit Now</a>
             </p>
             <h4>Technologies used include:</h4>
             <ul>
               <li>Python</li>
-              <li>ML</li>
-              <li>HTML</li>
+              <li>Machine Learning</li>
+              <li>Flask</li>
+              <li>HTML/CSS</li>
             </ul>
           </div>
-          <img src="dp.png" alt="Screenshot of the Diabetes Prediction." />
+          <img src="https://via.placeholder.com/600x400/4b0d49/ffd700?text=Diabetes+Prediction" alt="Screenshot of Diabetes Prediction System" />
         </article>
 
-
+        <article class="fade-in">
+          <div class="text">
+            <h4>E-Commerce Platform</h4>
+            <h3>Royal Shop</h3>
+            <p class="blackbox">
+              A full-featured e-commerce platform with user authentication, product catalog, shopping cart, and payment integration.
+              Built with modern web technologies to provide a seamless shopping experience with responsive design and secure transactions.
+            </p>
+            <h4>Technologies used include:</h4>
+            <ul>
+              <li>React</li>
+              <li>Node.js</li>
+              <li>MongoDB</li>
+              <li>Stripe API</li>
+            </ul>
+          </div>
+          <img src="https://via.placeholder.com/600x400/663399/86fbfb?text=Royal+Shop" alt="Screenshot of Royal Shop E-commerce" />
+        </article>
       </div>
-      <button class="see-more">See More</button>
+
+      <button class="see-more" id="seeMoreBtn">
+        <span class="btn-text">See More Royal Projects</span>
+        <span class="btn-icon">👑</span>
+      </button>
     </section>
   </div>
+  
   <div class="gradient"></div>
+  
+  <!-- Contact Section -->
   <div class="section-plum">
-    <section id="contact">
-      <h3>Contact</h3>
-      <p style="font-size:15px;">I am always intresting in hearing about new opportunity</p>
-      <p><a href="mailto:“jamadarsaim@gmail.com" class="button">Email Me</a></p>
+    <section id="contact" class="fade-in">
+      <h3><span class="crown">💎</span>Contact His Royal Highness</h3>
+      <p style="font-size:1.2rem; margin: 2rem 0;">I am always interested in hearing about new opportunities and royal collaborations</p>
+      <p><a href="mailto:jamadarsaim@gmail.com" class="button">Send Royal Message</a></p>
+      
+      <!-- Royal Contact Cards -->
+      <div class="contact-cards">
+        <div class="contact-card">
+          <i class="fas fa-envelope"></i>
+          <h4>Royal Email</h4>
+          <p>jamadarsaim@gmail.com</p>
+        </div>
+        <div class="contact-card">
+          <i class="fas fa-phone"></i>
+          <h4>Royal Hotline</h4>
+          <p>Available on LinkedIn</p>
+        </div>
+        <div class="contact-card">
+          <i class="fas fa-map-marker-alt"></i>
+          <h4>Royal Kingdom</h4>
+          <p>Pune, Maharashtra, India</p>
+        </div>
+      </div>
     </section>
   </div>
+  
   <div class="gradient"></div>
-  <footer id="footer">
-    <h2>Saim Jamadar - Developer</h2>
+  
+  <!-- Footer -->
+  <footer id="footer" class="fade-in">
+    <h2><span class="crown">👑</span>Saim Jamadar - Royal Developer</h2>
     <ul>
       <li><a href="https://www.linkedin.com/in/saim-jamadar-a009a01ba/" target="_blank"><span
             class="fa-brands fa-linkedin" aria-hidden="true"></span><span class="sr-only">LinkedIn</span></a></li>
-      <li><a href="https://www.github.com/samjam003"><span class="fa-brands fa-github" aria-hidden="true"></span><span
+      <li><a href="https://www.github.com/samjam003" target="_blank"><span class="fa-brands fa-github" aria-hidden="true"></span><span
             class="sr-only">Github</span></a></li>
-      <li><a href="mailto:“jamadarsaim@gmail.com"><span class="fa-solid fa-envelope" aria-hidden="true"></span><span
+      <li><a href="mailto:jamadarsaim@gmail.com"><span class="fa-solid fa-envelope" aria-hidden="true"></span><span
             class="sr-only">Email</span></a></li>
     </ul>
-    <p><small>&copy; <span id="currentYear"></span> Saim Jamadar. All rights reserved.</small></p>
-
-    <script>
-      // JavaScript to set the current year
-      document.getElementById("currentYear").textContent = new Date().getFullYear();
-    </script>
+    <p><small>&copy; <span id="currentYear"></span> Saim Jamadar. All rights reserved. Built with Royal Excellence.</small></p>
   </footer>
-</body>
-<script>
-  const seeMoreBtn = document.querySelector('.see-more');
-  const hiddenProjects = document.querySelector('.hidden-projects');
 
-  seeMoreBtn.addEventListener('click', () => {
-    hiddenProjects.classList.toggle('show');
-    if (hiddenProjects.classList.contains('show')) {
-      seeMoreBtn.textContent = 'See Less';
-    } else {
-      seeMoreBtn.textContent = 'See More';
+  <!-- Back to Top Button -->
+  <button id="backToTop" class="back-to-top">
+    <i class="fas fa-crown"></i>
+  </button>
+
+<script>
+// Particle System
+function createParticles() {
+    const particlesContainer = document.querySelector('.particles');
+    const particleCount = 50;
+    
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 15 + 's';
+        particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+        particlesContainer.appendChild(particle);
     }
-  });
+}
+
+// Scroll Progress Indicator
+function updateScrollProgress() {
+    const scrollProgress = document.querySelector('.scroll-progress');
+    const scrollTop = document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrollPercentage = (scrollTop / scrollHeight) * 100;
+    scrollProgress.style.width = scrollPercentage + '%';
+}
+
+// Fade In Animation on Scroll
+function fadeInOnScroll() {
+    const fadeElements = document.querySelectorAll('.fade-in');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+    
+    fadeElements.forEach(element => {
+        observer.observe(element);
+    });
+}
+
+// See More Button Functionality
+function initSeeMoreButton() {
+    const seeMoreBtn = document.getElementById('seeMoreBtn');
+    const hiddenProjects = document.querySelector('.hidden-projects');
+    
+    if (seeMoreBtn && hiddenProjects) {
+        seeMoreBtn.addEventListener('click', () => {
+            hiddenProjects.classList.toggle('show');
+            const btnText = seeMoreBtn.querySelector('.btn-text');
+            
+            if (hiddenProjects.classList.contains('show')) {
+                btnText.textContent = 'Show Less Royal Projects';
+                seeMoreBtn.classList.add('active');
+            } else {
+                btnText.textContent = 'See More Royal Projects';
+                seeMoreBtn.classList.remove('active');
+            }
+        });
+    }
+}
+
+// Back to Top Button
+function initBackToTop() {
+    const backToTopBtn = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToTopBtn.classList.add('visible');
+        } else {
+            backToTopBtn.classList.remove('visible');
+        }
+    });
+    
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
+
+// Smooth scrolling for navigation links
+function initSmoothScroll() {
+    const navLinks = document.querySelectorAll('nav a[href^="#"]');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+}
+
+// GSAP Animations
+function initGSAPAnimations() {
+    // Register ScrollTrigger plugin
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // Hero section animation
+    gsap.timeline()
+        .from("#intro .name span", {
+            duration: 1.5,
+            y: 100,
+            opacity: 0,
+            ease: "power3.out"
+        })
+        .from("#intro h5", {
+            duration: 1,
+            y: 50,
+            opacity: 0,
+            ease: "power2.out"
+        }, "-=0.5")
+        .from("#intro p", {
+            duration: 1,
+            y: 30,
+            opacity: 0,
+            ease: "power2.out"
+        }, "-=0.3");
+    
+    // Project cards animation
+    gsap.utils.toArray("article").forEach((article, index) => {
+        gsap.fromTo(article, 
+            {
+                y: 100,
+                opacity: 0,
+                scale: 0.8
+            },
+            {
+                y: 0,
+                opacity: 1,
+                scale: 1,
+                duration: 1,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: article,
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none reverse"
+                }
+            }
+        );
+    });
+    
+    // Navigation animation
+    gsap.from("nav ul li", {
+        duration: 0.8,
+        y: -50,
+        opacity: 0,
+        stagger: 0.1,
+        ease: "power2.out"
+    });
+    
+    // Footer animation
+    gsap.fromTo("#footer", 
+        {
+            y: 100,
+            opacity: 0
+        },
+        {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: "#footer",
+                start: "top 90%"
+            }
+        }
+    );
+}
+
+// Royal hover effects for project cards
+function initRoyalEffects() {
+    const articles = document.querySelectorAll('article');
+    
+    articles.forEach(article => {
+        article.addEventListener('mouseenter', function() {
+            gsap.to(this, {
+                duration: 0.3,
+                y: -15,
+                scale: 1.02,
+                boxShadow: "0 25px 50px rgba(255, 23, 228, 0.4)",
+                ease: "power2.out"
+            });
+        });
+        
+        article.addEventListener('mouseleave', function() {
+            gsap.to(this, {
+                duration: 0.3,
+                y: 0,
+                scale: 1,
+                boxShadow: "0 15px 30px rgba(255, 23, 228, 0.2)",
+                ease: "power2.out"
+            });
+        });
+    });
+}
+
+// Royal typing effect for the name
+function initTypingEffect() {
+    const nameElement = document.querySelector('#intro .name span');
+    if (nameElement) {
+        const text = nameElement.textContent;
+        nameElement.textContent = '';
+        nameElement.style.borderRight = '2px solid var(--gold)';
+        
+        let i = 0;
+        const typeWriter = () => {
+            if (i < text.length) {
+                nameElement.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            } else {
+                setTimeout(() => {
+                    nameElement.style.borderRight = 'none';
+                }, 1000);
+            }
+        };
+        
+        setTimeout(typeWriter, 1000);
+    }
+}
+
+// Set current year
+function setCurrentYear() {
+    const currentYearElement = document.getElementById("currentYear");
+    if (currentYearElement) {
+        currentYearElement.textContent = new Date().getFullYear();
+    }
+}
+
+// Initialize all functions when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    createParticles();
+    fadeInOnScroll();
+    initSeeMoreButton();
+    initBackToTop();
+    initSmoothScroll();
+    initGSAPAnimations();
+    initRoyalEffects();
+    initTypingEffect();
+    setCurrentYear();
+    
+    // Add scroll event listener for progress indicator
+    window.addEventListener('scroll', updateScrollProgress);
+    
+    // Add some delay for better user experience
+    setTimeout(() => {
+        document.body.classList.add('loaded');
+    }, 500);
+});
+
+// Add loading class removal for smooth entrance
+window.addEventListener('load', function() {
+    document.body.classList.add('fully-loaded');
+});
 </script>
 
-</html>
+<style>
+/* Additional Styles for New Elements */
+.contact-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
+.contact-card {
+    background: rgba(13, 49, 75, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(134, 251, 251, 0.2);
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+    transition: left 0.5s;
+}
+
+.contact-card:hover::before {
+    left: 100%;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(255, 23, 228, 0.3);
+    border-color: var(--gold);
+}
+
+.contact-card i {
+    font-size: 2rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+}
+
+.contact-card h4 {
+    color: var(--aqua);
+    margin: 1rem 0 0.5rem 0;
+    font-family: var(--royal);
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(45deg, var(--hotmag), var(--magenta));
+    border: none;
+    border-radius: 50%;
+    color: var(--white);
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 10px 20px rgba(255, 23, 228, 0.3);
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    transform: translateY(-3px) rotate(360deg);
+    box-shadow: 0 15px 30px rgba(255, 23, 228, 0.5);
+}
+
+.see-more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: auto;
+    max-width: 300px;
+}
+
+.see-more.active {
+    background: linear-gradient(45deg, var(--gold), var(--aqua));
+    color: var(--black);
+}
+
+.btn-icon {
+    transition: transform 0.3s ease;
+}
+
+.see-more:hover .btn-icon {
+    transform: scale(1.2) rotate(15deg);
+}
+
+/* Enhanced fade-in animation */
+.fade-in {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Loading states */
+body {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+body.loaded {
+    opacity: 1;
+}
+
+/* Royal pulse animation */
+@keyframes royalPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 20px rgba(255, 215, 0, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 215, 0, 0);
+    }
+}
+
+.button:hover {
+    animation: royalPulse 1.5s infinite;
+}
+</style>
